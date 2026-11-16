@@ -1,0 +1,54 @@
+# Infinity Core for Home Assistant — made by InfinityDesktop tools/ha-repo.sh; the image: ghcr.io/tekchansin/infinity-core
+name: Infinity Core (beta)
+version: "14.0-beta4"
+image: ghcr.io/tekchansin/infinity-core
+stage: experimental
+slug: infinity_beta
+description: Your music library, Qobuz and TIDAL — played on your Infinity DAP, AirPlay, Google Cast or UPnP speakers, or a USB DAC on the box.
+url: https://anantarultimate.com
+arch:
+  - amd64
+init: false
+startup: application
+boot: auto
+host_network: true        # finds DAPs and speakers on the network (mDNS, SSDP) and serves them the music
+ingress: true             # the UI in the sidebar, behind Home Assistant's own sign-in
+ingress_port: 8930
+panel_icon: mdi:infinity
+panel_title: Infinity Core
+map:
+  - media:rw              # /media — Home Assistant's media folder (and the network shares you added in Settings › Storage)
+  - share:rw              # /share/music or /share/Music
+# a DAC on the box (ALSA hw:, bit-perfect, native DSD): the sound cards' nodes. Every add-on sees the host's /dev; the
+# Supervisor lets it open only the listed paths, and one plugged in later when its path is listed here (its hotplug rule,
+# supervisor/docker/app.py). A USB DAC is device 0 of its card; cards 0–7 cover a box's own sound + HDMI + a few DACs.
+# `audio: true` would be PulseAudio only (mixed, resampled) — not this.
+# Home Assistant's own audio (PulseAudio) holds every card it sees: a DAC picked in Infinity Core is set to Off there
+# (Supervisor /audio/profile — the manager role allows /audio/*; owner 2026-11-15: "the Core frees it on pick")
+hassio_api: true
+hassio_role: manager
+devices:
+  - /dev/snd/controlC0
+  - /dev/snd/controlC1
+  - /dev/snd/controlC2
+  - /dev/snd/controlC3
+  - /dev/snd/controlC4
+  - /dev/snd/controlC5
+  - /dev/snd/controlC6
+  - /dev/snd/controlC7
+  - /dev/snd/pcmC0D0p
+  - /dev/snd/pcmC1D0p
+  - /dev/snd/pcmC2D0p
+  - /dev/snd/pcmC3D0p
+  - /dev/snd/pcmC4D0p
+  - /dev/snd/pcmC5D0p
+  - /dev/snd/pcmC6D0p
+  - /dev/snd/pcmC7D0p
+options:
+  name: Home Assistant
+  country: ""
+  language: ""
+schema:
+  name: str               # how DAPs and speakers see this player ("Playing from …")
+  country: str?           # two letters (TH, JP …) for Live Radio's local stations; empty = from the language
+  language: str?          # e.g. th_TH — the language of station lists and online information
