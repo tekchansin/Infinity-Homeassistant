@@ -35,8 +35,8 @@ services:
     volumes:
       - ./data:/data               # library, settings, updates
       - /path/to/your/music:/music:ro
-    devices:
-      - /dev/snd:/dev/snd          # only for a USB DAC on this machine
+    # devices:                    # only for a USB DAC plugged into this machine: remove the two #
+    #   - /dev/snd:/dev/snd
 ```
 
 Use it from **Infinity Core for Mac or Windows**: Settings › Infinity Core › pick it, and enter the code from
