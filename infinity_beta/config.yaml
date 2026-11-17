@@ -1,6 +1,6 @@
 # Infinity Core for Home Assistant — made by InfinityDesktop tools/ha-repo.sh; the image: ghcr.io/tekchansin/infinity-core
 name: Infinity Core (beta)
-version: "14.0-beta7"
+version: "14.0-beta8"
 image: ghcr.io/tekchansin/infinity-core
 stage: experimental
 slug: infinity_beta
