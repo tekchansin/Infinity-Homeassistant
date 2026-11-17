@@ -39,6 +39,18 @@ services:
     #   - /dev/snd:/dev/snd
 ```
 
+Music in more than one place: mount each folder inside `/music`. Everything under `/music` is one library.
+
+```yaml
+    volumes:
+      - ./data:/data
+      - /mnt/disk1/music:/music/disk1:ro
+      - /mnt/disk2/flac:/music/disk2:ro
+```
+
+Use volumes, not symbolic links: a link inside `/music` is not followed. A folder mounted somewhere else (e.g.
+`/music2`) works too: add it in Settings › Storage. After changing the volumes, run `docker compose up -d`.
+
 Open it in a browser on your network: **`http://<your server's address>:8930`** (the log says the address). The first
 time, the page pairs the browser: press **Show a code**, find the six-digit code in the container's log
 (`docker logs infinity-core`) and type it. Each browser pairs once.
@@ -67,6 +79,8 @@ services:
       - /mnt/tank/apps/infinity:/data
       - /mnt/tank/music:/music:ro
 ```
+
+   More than one music dataset: one line each, inside `/music` (e.g. `/mnt/tank/flac:/music/flac:ro`).
 
 3. Open **`http://<your TrueNAS address>:8930`** in a browser. To pair it, press **Show a code**, then in TrueNAS open
    Apps › infinity-core › Workloads › the log icon beside the container: the six-digit code is at the bottom. Type it
