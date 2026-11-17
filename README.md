@@ -88,6 +88,57 @@ services:
 4. Infinity Core for Mac or Windows can use it too: System › Shell, `sudo docker ps` shows the container's name, then
    `sudo docker exec <name> infinity-core --pair-code` gives the code for it.
 
+## Synology
+
+DSM 7.2 or newer, on a Synology with an **Intel or AMD** processor (most "+" models). Models with a Realtek or other
+ARM processor cannot run it yet: the container stops with `exec format error`. Not sure which yours has? Look up
+"What kind of CPU does my Synology NAS have?" on Synology's site.
+
+1. Package Center › install **Container Manager**. It makes a shared folder called `docker`.
+2. File Station › in `docker`, make a folder `infinity-core` (Infinity Core's library and settings go there). Your
+   music stays where it is, e.g. the shared folder `music`.
+3. Container Manager › **Project** › Create: name `infinity-core`, path `/volume1/docker/infinity-core`, source
+   **Create docker-compose.yml**, and paste (your own folders; in File Station, a folder's Properties show its path):
+
+```yaml
+services:
+  infinity-core:
+    image: ghcr.io/tekchansin/infinity-core:beta
+    container_name: infinity-core
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      INFINITY_NAME: "Synology"
+      TZ: Asia/Bangkok
+    volumes:
+      - /volume1/docker/infinity-core:/data
+      - /volume1/music:/music:ro
+```
+
+   Use a Project, not the Container wizard: the wizard puts the container on the `bridge` network, where Infinity Core
+   cannot find your DAPs and speakers. `network_mode: host` is the line that matters. Leave the web portal step off.
+   More than one music folder: one line each, inside `/music` (e.g. `/volume2/flac:/music/flac:ro`).
+
+4. Open **`http://<your Synology's address>:8930`** in a browser (port 8930, not DSM's 5000). To pair it, press
+   **Show a code**, then in Container Manager › Container › infinity-core › **Log**: the six-digit code is at the bottom.
+   Type it on the page. Each browser pairs once.
+5. Infinity Core for Mac or Windows can use it too. It needs a code from a terminal: Control Panel › Terminal & SNMP ›
+   enable SSH, sign in with an administrator account, and run `sudo docker exec infinity-core infinity-core --pair-code`.
+6. DSM's firewall is off unless you turned it on. If it is on (Control Panel › Security › Firewall), allow from your home
+   network: TCP 8930 and 8931, and UDP 5353 (Bonjour — how DAPs and speakers are found).
+
+## Good to know on a server
+
+**Where it plays.** A NAS or a Home Assistant box has no sound of its own, so *System output* plays nothing ("no audio
+output"). Open the device list and pick where the music goes: a DAP or a phone over Infinity Link, an AirPlay, Google
+Cast or UPnP speaker, or Infinity Core for Mac or Windows on a computer.
+
+**Away from home.** In Infinity Core: Settings › Mobile App › **Link Anywhere** on, and sign in to Tailscale. On your
+phone, in Infinity Core for Mobile, switch on Link Anywhere with the **same** Tailscale account. Running Tailscale on the
+NAS itself (e.g. Synology's Tailscale package) is not the same: the phone can open the library through it, but Infinity
+Core cannot send music back to the phone. Pair the phone at home, or with the Infinity Core shown on the phone's
+Link Anywhere list — not with the NAS's own 100.x address.
+
 Images: `ghcr.io/tekchansin/infinity-core` for amd64 (Intel and AMD computers). arm64 (Raspberry Pi, Home Assistant
 Green and Yellow) follows in a later version. This repository holds the add-on's
 description only; Infinity Core's own code is not open source.
