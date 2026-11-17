@@ -39,9 +39,13 @@ services:
     #   - /dev/snd:/dev/snd
 ```
 
-Use it from **Infinity Core for Mac or Windows**: Settings › Infinity Core › pick it, and enter the code from
-`docker exec infinity-core infinity-core --pair-code`. New versions install from the app, in the same container
-(Settings › About); `docker compose pull && docker compose up -d` works too.
+Open it in a browser on your network: **`http://<your server's address>:8930`** (the log says the address). The first
+time, the page pairs the browser: press **Show a code**, find the six-digit code in the container's log
+(`docker logs infinity-core`) and type it. Each browser pairs once.
+
+Infinity Core for Mac or Windows can use it too: Settings › Infinity Core › pick it, and enter the code from
+`docker exec infinity-core infinity-core --pair-code`. New versions install from Settings › About, in the same
+container; `docker compose pull && docker compose up -d` works too.
 
 ## TrueNAS SCALE
 
@@ -64,8 +68,11 @@ services:
       - /mnt/tank/music:/music:ro
 ```
 
-3. The pairing code: System › Shell, `sudo docker ps` shows the container's name, then
-   `sudo docker exec <name> infinity-core --pair-code`.
+3. Open **`http://<your TrueNAS address>:8930`** in a browser. To pair it, press **Show a code**, then in TrueNAS open
+   Apps › infinity-core › Workloads › the log icon beside the container: the six-digit code is at the bottom. Type it
+   on the page. Each browser pairs once.
+4. Infinity Core for Mac or Windows can use it too: System › Shell, `sudo docker ps` shows the container's name, then
+   `sudo docker exec <name> infinity-core --pair-code` gives the code for it.
 
 Images: `ghcr.io/tekchansin/infinity-core` for amd64 (Intel and AMD computers). arm64 (Raspberry Pi, Home Assistant
 Green and Yellow) follows in a later version. This repository holds the add-on's
