@@ -1,22 +1,30 @@
 # Changelog
 
-## 14.0-beta9
-Favourites shared with Qobuz and TIDAL, a clearer Discography, and cleaner sound on your computer's own DAC.
+## 14.0-beta10
+Big libraries, music on a NAS, and nearly every kind of music file.
 
 **Highlights**
-- ♡ and your Qobuz / TIDAL favourites are one: a song, album or artist you ♡ in Infinity Core is saved as a favourite on the service, and what you favourite in the service's own app gets its ♡ here. Both ways, checked every 15 minutes.
-- Artist pages: Discography in sections — Albums, Singles and EPs, Live, Compilations — with your library and Qobuz / TIDAL releases side by side. The versions of one release sit behind "N versions", labelled Explicit, Clean or Dolby Atmos. Cards or a list, newest or oldest first, and an artist you never opened shows in under a second.
-- Cleaner sound on this computer's DAC: pause, resume, seek and skip fade over a few milliseconds instead of clicking, and a loud master that has to be converted to another sample rate no longer clips on its peaks.
-- EQ and PEQ: a band plays one curve at every sample rate. A hi-res file used to get up to 3 dB more at 20 kHz than a CD-rate one; AutoEQ / OPRA headphone presets now play as their authors fitted them. With Anantar Ultimate 14.0-beta4 the DAP's own EQ on an Infinity Link stream follows the same curve.
+- Built for big libraries: with 200,000 tracks and more, Albums, Artists, artist pages, playlists and Focus open right away — on a small Home Assistant box too. A ♡ no longer makes the lists load again.
+- Music on a NAS: the first scan reads several files at once and finishes several times sooner, and opening Infinity Core no longer spends minutes checking a large network folder.
+- Plays nearly every kind of music file: Monkey's Audio (APE), Ogg Vorbis, Opus, WMA, TTA, TAK, Musepack, Shorten, AC-3, DTS and Matroska audio — the same on Mac, Windows and Linux. Settings › Library › Supported formats lists what your computer plays.
 
 **New**
-- Docker, TrueNAS and Synology: open Infinity Core in a browser on your network at http://<your server's address>:8930. Each browser pairs once with a code from the container's log.
+- PEQ: import a ParametricEQ .txt (AutoEQ, Equalizer APO) on the PEQ page — the Import button, or drop the file on the editor. With a DAP as the output, the DAP imports the file itself.
+- Library: two copies of one album in different folders are two versions, each with a name — its folder's ("Vinyl", "Japan · 24-96") or its media, country and label. An album with only one of its songs here is no longer called a Single or EP.
+- Settings in 9 sections instead of 12: Library holds your music folders, scan and maintenance; Services has everything Qobuz and TIDAL; Troubleshooting sits in About.
 
 **Improvements**
-- "Run DSP on: Infinity Core" with every stage off no longer streams what your DAP has itself: the DAP plays its own files, Qobuz and TIDAL, and Infinity Core takes over the moment you switch a stage on.
-- Infinity Core for Mobile on older phones and DAPs: the cover, bars and switches that were missing are back, pages open and close smoothly, and a slow GPU gets solid bars instead of the blur.
-- The phone's device list on Home Assistant: a DAC that Home Assistant's own audio holds says so, and there is no "System output" row.
+- Smart playlists on the phone open at once, however many tracks they match.
+- Home Assistant and Docker: Infinity Core uses far less memory after you browse a big library.
+- WMA, AC-3, MP2 and other lossy files are labelled Lossy.
+- The volume slider follows your finger smoothly, on the computer and on the phone.
+- Qobuz and TIDAL playlist rows: square covers unless most are wide, and My Qobuz in the same order as My TIDAL.
+- Signing out of Qobuz or TIDAL also takes that account's ♡ off your artists.
 
 **Fixes**
-- A phone or player that cannot open a sample rate it offers (a Galaxy S25 at 705.6 / 768 kHz) no longer stands silent at one position: the song starts again at the next rate down.
-- Home Assistant: only this box itself and paired apps reach Infinity Core's controls (a request from the network could pass as local).
+- FLAC files with ID3 tags in front of the music said "not a FLAC file" and did not play. They play now.
+- A file that cannot be opened — a network folder that is away — says so, instead of "not a FLAC file".
+- Ogg, Opus and APE files no longer sit in the library greyed out.
+- A DAP on Infinity Link: when its listener picks another album on the DAP itself, Infinity Core follows within a second or two (it kept showing the old one).
+- TIDAL: tracks on a mix page link to their artist, and a "More" list no longer stays blank.
+- Tag editor: a file it rewrites keeps its permissions.
