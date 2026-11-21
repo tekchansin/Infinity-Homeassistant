@@ -1,17 +1,21 @@
 # Changelog
 
-## 14.0-beta15
-The phone page makes use of a bigger screen.
+## 14.0-beta16
+Your music on your phone — even with no signal.
 
 **Highlights**
-- Foldables and tablets: on a wide screen — a Galaxy Z Fold opened, a tablet — the phone page (in Infinity Core for Mobile, or a browser) is laid out for the room it has. The four sections move to a rail at the left, the player bar gains Previous, volume, the device list and the queue, and a menu opens where you tap it.
-- Now Playing stays in sight: on a tablet, or a foldable on its side, Now Playing sits at the right of every page with Up next, Lyrics and Sound — browse the library while you see and steer what plays. Its own button hides it; the player bar brings it back.
-- Now Playing in two halves: opened full on a wide screen, the cover and the transport take one half, Up next / Lyrics / Sound the other. A phone on its side gets the cover at the left and the transport at the right.
+- Downloads to your phone: pick albums, playlists or single songs for your phone to keep — ⋯ › Download to your phone here, or ⋯ › Download in Infinity Core for Mobile. The phone fetches them on Wi-Fi, and on mobile data it plays its own copy instead of streaming, so the music uses no data. Needs Infinity Core for Mobile 14.0-beta13 on Android (iPhone to follow).
+- Favorite tracks and Smart Downloads: keep every ♡ track on the phone as you heart it, and let Smart Downloads fill the rest of the space with albums from your favorites, what you play most, what is new, or fresh picks each week — it swaps them by itself. On the phone: More › Downloads. Here: Settings › Mobile App › Downloads on phones › Edit.
+- Devices & Sharing: this Mac's own settings — the virtual sound card, sharing its devices, sharing this Infinity Core — now sit together under this Mac's name in Settings, also while the app uses another Infinity Core. Sharing this Mac's devices is now on for its real outputs (built-in, USB and the like) the first time each is seen; switch any of them off there.
 
 **Improvements**
-- An album on a wide screen: its cover, names and Play stay at the left while the tracks scroll at the right. Home puts Continue listening beside Your library, and grids show more covers, not larger ones.
-- A tablet's browser gets the page made for fingers at any width.
+- Now Playing at the side of a tablet or an open foldable works like the phone's: the whole cover, the controls, and Lyrics · Sound · Sleep · Queue at the bottom.
+- A media server you add to the library shows its music right away, not a minute later.
 
 **Fixes**
-- Now Playing on a small screen (a Sony NW-A306 and other short ones): the cover no longer sits over the top bar and the song's name.
-- A page that did not come up — a dark screen after the network changed — now loads again by itself.
+- A media server's (UPnP) track in your library plays, seeks and ends like any file. On Windows it no longer stopped all playback until a restart.
+- A radio station that is really a single file now ends, and a station that stalls no longer holds up the player.
+- Skipping to the next song on an Infinity Link device (a DAP, a phone, a shared DAC) no longer starts it a few seconds in.
+- The queue opens over Now Playing, and Esc closes it first.
+- Now Playing's tabs and Full-screen lyrics stay on one line.
+- A long ⋯ menu stays inside the window.
