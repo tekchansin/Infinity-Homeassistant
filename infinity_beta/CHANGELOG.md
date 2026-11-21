@@ -1,17 +1,21 @@
 # Changelog
 
-## 14.0-beta18
-Name your music folders, and set up a server in one click.
+## 14.0-beta19
+Manage your music files, tidy duplicates, and AI with your own key.
 
 **Highlights**
-- Name your music folders: Settings › Library › ✎. Two folders both called "Music" no longer look alike — the name shows in Folders and on the Sync page too.
-- Infinity Core on a server (Docker, Synology, TrueNAS, Umbrel) sets up in one click: the first browser that opens it presses Start using Infinity Core — no code to find in the log. Other browsers and apps pair with a code shown in a browser that is already paired (Settings › Devices & Sharing).
+- Folders is a file manager now: drag files in to upload, download a file or a folder as .zip, copy and move (Copy to… / Move to…, or drag onto a folder), new folder, rename, delete. Pick a file to see everything about it — format, tags, cover, loudness, where it is in your library. On Mac and Windows deleting goes to the Trash; on a server it asks first, then deletes for good. Not over Remote access.
+- Duplicates: Settings › Library Health › Duplicates finds albums kept in more than one folder and songs stored twice. Keep the copy you want and remove the rest — plays, ♡ and playlists move to the one you keep. A DAP's own files too.
+- AI with your own key (beta): Settings › AI. Connect OpenRouter, Anthropic or an AI on your own network, then make a playlist from a few words, get what to play next, translate lyrics and tidy an album's tags. Nothing is sent until you set it up; What AI sees lists what each feature sends, and AI activity shows every request.
 
 **Improvements**
-- Radio is just Radio now, and the stations you keep are Saved Stations.
-- Umbrel: pick your music folder, set the name DAPs see and your time zone, and play on a USB DAC plugged into the Umbrel.
+- A new Home: what plays now and today's listening time, then a listening diary — one row per album you sat down with — beside your library, the last 7 days and who you played most. A DAP's page and the phone's Home match, and a fresh library gets Not heard yet, Just added and Album of the day.
+- Library Health (Settings): Covers finds albums with no cover, a small or not-square one, or the same picture on several albums. Find better covers searches MusicBrainz, iTunes, Qobuz, TIDAL and Kugou and puts the cover you pick into every song of the album, with one Undo. Search on COV opens covers.musichoarders.xyz for many more stores.
+- Name your Infinity Core: Settings › General › Name — DAPs, phones and other computers show it.
+- Tag editor: a Location column (your DAP or this computer), Show in Folders, and Fix tags.
+- Updates: Settings › About also shows this app's own update while it uses another Infinity Core. A Docker copy now updates itself; Home Assistant and Umbrel copies are updated by their store.
 
 **Fixes**
-- Sync to a DAP: after a music folder picked for sending was removed, From was empty and Send sent nothing. It sends from your music folders as they are now.
-- On Umbrel, its virtual sound cards no longer fill the device list.
-- The pairing page no longer hangs on Show a code when a proxy in front answers with an error page.
+- Copy from a DAP: songs with very long names (for example Thai titles listing every featured singer) now come across; Sync to DAP and phone Downloads handle them too.
+- Lyrics: when none are found, it tries once more without the edition and guest words in the title.
+- History keeps plays of songs that were moved or re-read since.
