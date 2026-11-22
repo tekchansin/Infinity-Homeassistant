@@ -1,21 +1,30 @@
 # Changelog
 
-## 14.0-beta19
-Manage your music files, tidy duplicates, and AI with your own key.
+## 14.0-beta20
+Your music on a TV, a check for your setup, and smoother playback on small servers.
 
 **Highlights**
-- Folders is a file manager now: drag files in to upload, download a file or a folder as .zip, copy and move (Copy to… / Move to…, or drag onto a folder), new folder, rename, delete. Pick a file to see everything about it — format, tags, cover, loudness, where it is in your library. On Mac and Windows deleting goes to the Trash; on a server it asks first, then deletes for good. Not over Remote access.
-- Duplicates: Settings › Library Health › Duplicates finds albums kept in more than one folder and songs stored twice. Keep the copy you want and remove the rest — plays, ♡ and playlists move to the one you keep. A DAP's own files too.
-- AI with your own key (beta): Settings › AI. Connect OpenRouter, Anthropic or an AI on your own network, then make a playlist from a few words, get what to play next, translate lyrics and tidy an album's tags. Nothing is sent until you set it up; What AI sees lists what each feature sends, and AI activity shows every request.
+- Displays: a TV, tablet or old laptop in the house shows what plays — the cover, the song and its lyrics, large. Settings › Displays: open the page on the TV and type the code it shows. A button beside the volume shows or stops it (it is there only when a display is on); Stop shows a clock until you press Play again.
+- Check this Core (Settings › About): checks where Infinity Core runs, whether it finds your devices, whether it plays with real-time priority, and every device you play on — in plain words, with what to change (for Docker, the lines for docker-compose.yml). Copy report gives us everything we need to help.
+- A new Home: Today's pick, rows you can scroll sideways with See all (New releases, Your mixes, Artists for you), Your listening, and Not for me to hide what you don't want. The listening diary moved to History.
 
 **Improvements**
-- A new Home: what plays now and today's listening time, then a listening diary — one row per album you sat down with — beside your library, the last 7 days and who you played most. A DAP's page and the phone's Home match, and a fresh library gets Not heard yet, Just added and Album of the day.
-- Library Health (Settings): Covers finds albums with no cover, a small or not-square one, or the same picture on several albums. Find better covers searches MusicBrainz, iTunes, Qobuz, TIDAL and Kugou and puts the cover you pick into every song of the album, with one Undo. Search on COV opens covers.musichoarders.xyz for many more stores.
-- Name your Infinity Core: Settings › General › Name — DAPs, phones and other computers show it.
-- Tag editor: a Location column (your DAP or this computer), Show in Folders, and Fix tags.
-- Updates: Settings › About also shows this app's own update while it uses another Infinity Core. A Docker copy now updates itself; Home Assistant and Umbrel copies are updated by their store.
+- Equalizer and PEQ changes are heard within a few seconds on this computer's DAC (it could take up to 17 seconds).
+- Qobuz and TIDAL: the next song starts downloading before this one ends, so songs change without waiting.
+- Home Assistant and Umbrel: music plays with real-time priority, covers are sent small (a 1.4 MB cover is about 15 KB on a phone's list), and the server writes far less to its disk.
+- Make a playlist with AI: a new dialog with starters, close it and come back, Stop; AI is in the sidebar.
+- Saved filters on every page (DAP pages too), and the last filter is kept.
+- Queue: a menu on each song, and select several at once.
+- New for you looks at 30 of your artists over the last 180 days.
+- A phone's speaker is ready as soon as its app opens.
+- Tablets get a sidebar from 800 px wide.
+- Infinity Link devices: Forget a device you no longer use; Add by address finds a computer's shared devices without typing a port.
+- Settings › Devices & Sharing shows each shared device's address, to add it by hand on a Core that does not find it.
 
 **Fixes**
-- Copy from a DAP: songs with very long names (for example Thai titles listing every featured singer) now come across; Sync to DAP and phone Downloads handle them too.
-- Lyrics: when none are found, it tries once more without the edition and guest words in the title.
-- History keeps plays of songs that were moved or re-read since.
+- A computer that played through "Play on this computer" before 14.0-beta16 moves to the device it shares, instead of staying "Not connected".
+- Radio on Home Assistant, Umbrel and Docker: a station that stalled no longer froze Stop and Play.
+- Qobuz and TIDAL: Next, Seek and Stop work at once even while the network stalls.
+- Artist and album information no longer slows pages down while offline, and Qobuz and TIDAL pages that failed to load try again instead of staying empty.
+- Playing on a DAP over Infinity Link: a slow connection no longer holds up the whole app while the song's title and cover go to the DAP.
+- Several rare timing problems that could stop playback or the app are fixed.
