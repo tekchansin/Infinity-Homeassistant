@@ -1,11 +1,13 @@
 # Changelog
 
-## 14.0-beta25
-Send and Copy use the same two folders, and you see every file before a sync.
+## 14.0-beta26
+Artists whose names differ only in capitals are one artist again.
 
 **Highlights**
-- Sync with your DAP: one folder on this computer pairs with one folder on the DAP. Send takes from it and Copy brings into it, so music you copied from the DAP, tidied here and sent back lands where it came from. Change either side with Change on its card.
-- Before a sync starts, every file is listed: what will be sent (new, or changed here and replacing the one on the DAP), what would be removed, and what is already the same — grouped by album, each with why.
+- Artists whose names differ only in capital letters (LiSA and Lisa, AC/DC and Ac/Dc) are one artist again, as in Roon. If they really are two different artists, open the artist › ⋯ › Split artist; Join into one artist puts them back together.
+
+**Improvements**
+- Artist pictures and biographies: two artists who share a name (LISA and LiSA) no longer share one picture — each is found by their own albums.
 
 **Fixes**
-- Right-clicking an empty spot in the app no longer shows a browser menu (Back / Reload).
+- A NAS that keeps visible snapshots or a recycle bin in the music folder (Synology's #snapshot and #recycle, QNAP's @Recently-Snapshot …): albums no longer show up several times. Those system folders are skipped, and the extra copies leave the library on the next start.
