@@ -35,8 +35,19 @@ services:
     volumes:
       - ./data:/data               # library, settings, updates
       - /path/to/your/music:/music:rw
-    # devices:                    # only for a USB DAC plugged into this machine: remove the two #
-    #   - /dev/snd:/dev/snd
+    cap_add:
+      - SYS_NICE                   # the playback threads run real-time: no dropouts while the server is busy
+```
+
+A USB DAC plugged into this machine (bit-perfect, native DSD): add the sound cards. A DAC plugged in later shows up too.
+
+```yaml
+    volumes:
+      - ./data:/data
+      - /path/to/your/music:/music:rw
+      - /dev/snd:/dev/snd          # the sound cards
+    device_cgroup_rules:
+      - "c 116:* rwm"              # lets Infinity Core open them
 ```
 
 `:rw` lets Infinity Core write to your music: Library Health (tag edits, duplicate removal) and music copied from a DAP.
@@ -81,6 +92,8 @@ services:
     volumes:
       - /mnt/tank/apps/infinity:/data
       - /mnt/tank/music:/music:rw
+    cap_add:
+      - SYS_NICE                   # the playback threads run real-time: no dropouts while the server is busy
 ```
 
    More than one music dataset: one line each, inside `/music` (e.g. `/mnt/tank/flac:/music/flac:rw`).
@@ -116,6 +129,8 @@ services:
     volumes:
       - /volume1/docker/infinity-core:/data
       - /volume1/music:/music:rw
+    cap_add:
+      - SYS_NICE                   # the playback threads run real-time: no dropouts while the server is busy
 ```
 
    Use a Project, not the Container wizard: the wizard puts the container on the `bridge` network, where Infinity Core
@@ -128,7 +143,8 @@ services:
 5. Infinity Core for Mac or Windows can use it too. It needs a code from a terminal: Control Panel › Terminal & SNMP ›
    enable SSH, sign in with an administrator account, and run `sudo docker exec infinity-core infinity-core --pair-code`.
 6. DSM's firewall is off unless you turned it on. If it is on (Control Panel › Security › Firewall), allow from your home
-   network: TCP 8930 and 8931, and UDP 5353 (Bonjour — how DAPs and speakers are found).
+   network: TCP 8930 and 8931, TCP 8950 (UPnP / DLNA players and Chromecast fetch the music there), UDP 8960–8979
+   (AirPlay speakers), and UDP 5353 and 1900 (Bonjour and SSDP — how DAPs and speakers are found).
 
 ## Good to know on a server
 
