@@ -34,18 +34,21 @@ services:
       TZ: Asia/Bangkok
     volumes:
       - ./data:/data               # library, settings, updates
-      - /path/to/your/music:/music:ro
+      - /path/to/your/music:/music:rw
     # devices:                    # only for a USB DAC plugged into this machine: remove the two #
     #   - /dev/snd:/dev/snd
 ```
+
+`:rw` lets Infinity Core write to your music: Library Health (tag edits, duplicate removal) and music copied from a DAP.
+With `:ro` it can only read it, and those changes are not saved.
 
 Music in more than one place: mount each folder inside `/music`. Everything under `/music` is one library.
 
 ```yaml
     volumes:
       - ./data:/data
-      - /mnt/disk1/music:/music/disk1:ro
-      - /mnt/disk2/flac:/music/disk2:ro
+      - /mnt/disk1/music:/music/disk1:rw
+      - /mnt/disk2/flac:/music/disk2:rw
 ```
 
 Use volumes, not symbolic links: a link inside `/music` is not followed. A folder mounted somewhere else (e.g.
@@ -77,10 +80,10 @@ services:
       TZ: Asia/Bangkok
     volumes:
       - /mnt/tank/apps/infinity:/data
-      - /mnt/tank/music:/music:ro
+      - /mnt/tank/music:/music:rw
 ```
 
-   More than one music dataset: one line each, inside `/music` (e.g. `/mnt/tank/flac:/music/flac:ro`).
+   More than one music dataset: one line each, inside `/music` (e.g. `/mnt/tank/flac:/music/flac:rw`).
 
 3. Open **`http://<your TrueNAS address>:8930`** in a browser. To pair it, press **Show a code**, then in TrueNAS open
    Apps › infinity-core › Workloads › the log icon beside the container: the six-digit code is at the bottom. Type it
@@ -112,12 +115,12 @@ services:
       TZ: Asia/Bangkok
     volumes:
       - /volume1/docker/infinity-core:/data
-      - /volume1/music:/music:ro
+      - /volume1/music:/music:rw
 ```
 
    Use a Project, not the Container wizard: the wizard puts the container on the `bridge` network, where Infinity Core
    cannot find your DAPs and speakers. `network_mode: host` is the line that matters. Leave the web portal step off.
-   More than one music folder: one line each, inside `/music` (e.g. `/volume2/flac:/music/flac:ro`).
+   More than one music folder: one line each, inside `/music` (e.g. `/volume2/flac:/music/flac:rw`).
 
 4. Open **`http://<your Synology's address>:8930`** in a browser (port 8930, not DSM's 5000). To pair it, press
    **Show a code**, then in Container Manager › Container › infinity-core › **Log**: the six-digit code is at the bottom.
