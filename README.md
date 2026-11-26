@@ -160,4 +160,4 @@ Link Anywhere list — not with the NAS's own 100.x address.
 
 Images: `ghcr.io/tekchansin/infinity-core` for amd64 (Intel and AMD computers). arm64 (Raspberry Pi, Home Assistant
 Green and Yellow) follows in a later version. This repository holds the add-on's
-description only; Infinity Core's own code is not open source.
+description only; Infinity Core's own code is not open source — see [LICENSE](LICENSE).
